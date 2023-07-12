@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django_extensions',
 
     'accounts',
+    'professional_careers',
 
     'rest_framework',
     'oauth2_provider',
