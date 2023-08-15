@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'professional_careers',
     'school_groups',
     'school_subjects',
+    'students',
 
     'rest_framework',
     'oauth2_provider',

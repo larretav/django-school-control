@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
-from django.contrib.auth.models import AbstractUser, PermissionsMixin
+from django.contrib.auth.models import AbstractUser, UserManager
 from django_extensions.db.models import TimeStampedModel
 
 def upload_photo_file(instance, filename):
@@ -8,8 +8,9 @@ def upload_photo_file(instance, filename):
     if(x.pop() not in ('jpg','jpeg','png')):
         raise ValidationError('Extension de archivo invalida.')
     return f'photo_user/{instance.id}/{filename}'
-
-class User(AbstractUser, PermissionsMixin, TimeStampedModel):
+#NOTA: ACTUALMENTE HAY UN PROBLEMA CON LA CONTRASEÑA QUE NO SE ESTA
+#CODIFICANDO
+class User(AbstractUser, TimeStampedModel):
     GENDER_CHOICES = [
         ('M', 'Hombre'),
         ('F', 'Mujer'),
@@ -22,3 +23,5 @@ class User(AbstractUser, PermissionsMixin, TimeStampedModel):
     photo_url = models.FileField(upload_to=upload_photo_file, verbose_name="Foto del usuario", blank=True, null=True)
     status = models.BooleanField(default=True)
 
+    def __str__(self):
+        return '%s %s' % (self.first_name, self.last_name)
