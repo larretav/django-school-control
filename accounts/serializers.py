@@ -16,6 +16,14 @@ class UserSerializer(serializers.ModelSerializer):
             
         return response
 
+class UserStudentSerializer(serializers.ModelSerializer):
+    full_name = serializers.SerializerMethodField()
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'full_name', 'email', 'photo_url', 'gender', 'email_validation', 'status')
+    
+    def get_full_name(self, obj):
+        return str(obj)
 class GroupsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
