@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'school_groups',
     'school_subjects',
     'students',
+    'teachers',
 
     'rest_framework',
     'oauth2_provider',

@@ -10,3 +10,6 @@ class SchoolGroup(TimeStampedModel):
 
     def __str__(self):
         return '%s - 0%s' % (self.school_year, self.group_number)
+    
+    class Meta:
+        unique_together = ('school_year', 'group_number',)
