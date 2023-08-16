@@ -20,7 +20,7 @@ class User(AbstractUser, TimeStampedModel):
     email_validation = models.BooleanField(default=False)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='X')
     birthday = models.DateField(verbose_name='Fecha de nacimiento', null=True)
-    photo_url = models.FileField(upload_to=upload_photo_file, verbose_name="Foto del usuario", blank=True, null=True)
+    photo_url = models.CharField(max_length=500, verbose_name="Foto del usuario", blank=True, null=True)
     status = models.BooleanField(default=True)
 
     def __str__(self):
