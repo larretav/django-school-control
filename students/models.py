@@ -6,7 +6,7 @@ from school_groups.models import SchoolGroup
 from school_subjects.models import SchoolSubject
 
 # Create your models here.
-# materias
+# Estudiantes
 class Student(TimeStampedModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, related_name='student_user', on_delete=models.CASCADE)
     career = models.ForeignKey(ProfessionalCareer, related_name='student_carrer', blank=True, null=True, on_delete=models.CASCADE)
@@ -15,4 +15,4 @@ class Student(TimeStampedModel):
     school_subjects = models.ManyToManyField(SchoolSubject, blank=True, related_name='student_school_subjects')
 
     def __str__(self):
-        return '%s - %s - %s' % (self.user, self.semester, self.career.name)
+        return 'Estudiante: %s - %s - %s' % (self.user, self.semester, self.career.name)

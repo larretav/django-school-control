@@ -27,6 +27,7 @@ urlpatterns = [
     path('school-group/', include('school_groups.urls')),
     path('school-subject/', include('school_subjects.urls')),
     path('student/', include('students.urls')),
+    path('teacher/', include('teachers.urls')),
     re_path(r'^o/', include('oauth2_provider.urls'))
 ]
 

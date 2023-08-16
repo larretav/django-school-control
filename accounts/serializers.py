@@ -3,7 +3,10 @@ from django.contrib.auth.models import Group
 
 from .models import User
 from students.models import Student
+from teachers.models import Teacher
 from professional_careers.models import ProfessionalCareer
+from school_groups.models import SchoolGroup
+from school_subjects.models import SchoolSubject
 
 class UserSerializer(serializers.ModelSerializer):
 	
@@ -61,3 +64,35 @@ class UserAccountStudentRegisterSerializer(serializers.Serializer):
         )
 
         return user, student
+    
+class UserAccountTeacherRegisterSerializer(serializers.Serializer):
+    userKey = serializers.CharField()
+    password = serializers.CharField(write_only=True)
+    firstName = serializers.CharField()
+    lastName = serializers.CharField()
+    email = serializers.EmailField()
+    birthdate = serializers.DateField()
+    gender = serializers.ChoiceField(choices=User.GENDER_CHOICES)
+    photoUrl = serializers.CharField()
+    schoolGroups = serializers.PrimaryKeyRelatedField(queryset=SchoolGroup.objects.all(), many=True)
+    schoolSubjects = serializers.PrimaryKeyRelatedField(queryset=SchoolSubject.objects.all(), many=True)
+
+    def create(self, validated_data):
+        user = User.objects.create(
+            username=validated_data['userKey'],
+            email=validated_data['email'],
+            first_name=validated_data['firstName'],
+            last_name=validated_data['lastName'],
+            gender=validated_data['gender'],
+            birthday=validated_data['birthdate'],
+            photo_url=validated_data['photoUrl'],
+        )
+        user.set_password(validated_data['password'])
+        user.save()
+        teacher = Teacher.objects.create(
+            user=user
+        )
+        teacher.school_groups.set(validated_data.pop('schoolGroups'))
+        teacher.school_subjects.set(validated_data.pop('schoolSubjects'))
+
+        return user, teacher
