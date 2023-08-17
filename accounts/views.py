@@ -28,6 +28,7 @@ class UserAccountStudentRegisterView(generics.CreateAPIView):
 			else:
 				return Response({'status':'Error', 'message':'Error al crear el estudiante'}, status=status.HTTP_400_BAD_REQUEST)
 		except Exception as e:
+			print(e)
 			return Response({'status':'Error', 'message':'Error al crear el estudiante'}, status=status.HTTP_400_BAD_REQUEST)
 
 class UserAccountTeacherRegisterView(generics.CreateAPIView):
