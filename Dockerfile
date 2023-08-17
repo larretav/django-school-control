@@ -4,8 +4,6 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-RUN  apk update && apk add libpq-dev build-essential
-
 RUN apk update && apk upgrade \
     && apk add --no-cache \
     git \
