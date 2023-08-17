@@ -1,10 +1,8 @@
 FROM python:3.9.17-alpine
 
-WORKDIR /usr/src/app
+ENV PYTHONUNBUFFERED=1
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
+WORKDIR /app
 
 RUN apk update && apk upgrade \
     && apk add --no-cache \
@@ -19,10 +17,10 @@ RUN apk update && apk upgrade \
 
 RUN pip install --upgrade pip
 
-COPY . .
+COPY  ./requirements.txt ./
 
 RUN pip install -r requirements.txt
 
-RUN apk del build-deps
+COPY ./ ./
 
-RUN mkdir ../school-control-logs
+CMD["sh", "entrypoint.sh"]
