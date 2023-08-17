@@ -10,11 +10,10 @@ RUN apk update && apk upgrade \
     git \
     gcc \
     musl-dev \
-    libpq-dev \
-    build-essential \
     libxslt-dev \
     libxml2-dev \
     libffi-dev \
+    && libpq-dev build-essential
     && apk add --virtual build-deps python3-dev \
     && apk add --no-cache mariadb-dev
 
