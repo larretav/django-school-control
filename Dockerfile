@@ -1,13 +1,18 @@
-FROM python:3.10-slim
+FROM python:3.10.4-alpine3.15
 
+ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
-ENV APP_HOME /app
-WORKDIR $APP_HOME
-COPY . ./
 
-RUN apk add update && apk add libpq-dev build-essential
+WORKDIR /app
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN apk update && apk upgrade \
+	&& apk add --no-cache gcc musl-dev mariadb-dev python3-dev libffi-dev \
+	&& pip install --upgrade pip
 
+COPY ./requirements.txt ./
+
+RUN pip install -r requirements.txt
+
+COPY ./ ./
 
 CMD ["sh", "entrypoint.sh"]
