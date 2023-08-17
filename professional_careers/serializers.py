@@ -12,3 +12,8 @@ class ProfessionalCareerStudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProfessionalCareer
         fields = ('id', 'name')
+
+class ProfessionalCareerCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProfessionalCareer
+        fields = '__all__'
