@@ -1,8 +1,9 @@
 FROM python:3.10.4-alpine3.15
 
 ENV PYTHONUNBUFFERED=1
-
-WORKDIR /app
+ENV APP_HOME /app
+WORKDIR $APP_HOME
+COPY . ./
 
 RUN apk update && apk upgrade \
     && apk add --no-cache \
@@ -17,10 +18,8 @@ RUN apk update && apk upgrade \
 
 RUN pip install --upgrade pip
 
-COPY  ./requirements.txt ./
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY ./ ./
 
 CMD ["sh", "entrypoint.sh"]
