@@ -4,13 +4,14 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-RUN apk update && apk add libpq-dev build-essential
 
 RUN apk update && apk upgrade \
     && apk add --no-cache \
     git \
     gcc \
     musl-dev \
+    libpq-dev \
+    build-essential \
     libxslt-dev \
     libxml2-dev \
     libffi-dev \
@@ -21,7 +22,7 @@ RUN pip install --upgrade pip
 
 COPY  ./requirements.txt ./
 
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY ./ ./
 
