@@ -23,4 +23,4 @@ RUN pip install -r requirements.txt
 
 COPY ./ ./
 
-CMD["sh", "entrypoint.sh"]
+CMD ["sh", "entrypoint.sh"]
