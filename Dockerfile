@@ -1,10 +1,8 @@
-FROM python:3.9.17-alpine
+FROM python:3.10.4-alpine3.15
 
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
-
-RUN apk update && apk add libpq-dev build-essential
 
 RUN apk update && apk upgrade \
     && apk add --no-cache \
