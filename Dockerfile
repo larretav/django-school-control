@@ -4,6 +4,7 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
+RUN  apk update && apk add libpq-dev build-essential
 
 RUN apk update && apk upgrade \
     && apk add --no-cache \
@@ -13,7 +14,6 @@ RUN apk update && apk upgrade \
     libxslt-dev \
     libxml2-dev \
     libffi-dev \
-    && apk add libpq-dev build-essential \
     && apk add --virtual build-deps python3-dev \
     && apk add --no-cache mariadb-dev
 
