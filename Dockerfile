@@ -13,7 +13,7 @@ RUN apk update && apk upgrade \
     libxslt-dev \
     libxml2-dev \
     libffi-dev \
-    && libpq-dev build-essential \
+    && apk add libpq-dev build-essential \
     && apk add --virtual build-deps python3-dev \
     && apk add --no-cache mariadb-dev
 
