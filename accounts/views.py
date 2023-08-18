@@ -51,10 +51,10 @@ class UserAccountTeacherRegisterView(generics.CreateAPIView):
 @permission_classes([AllowAny])
 def token(request):
 	print('POST LOGIN we :v')
-    try:
-        user = User.objects.get(username = request.data['username'], is_active = True)
-        if user:
-            r = requests.post(
+	try:
+		user = User.objects.get(username = request.data['username'], is_active = True)
+		if user:
+			r = requests.post(
 			f'{AUTH_URL}/o/token/',
 				data={
 					'grant_type': 'password',
@@ -65,14 +65,14 @@ def token(request):
 				},
 			)
 
-            user.last_login = datetime.now()
-            user.save()
+			user.last_login = datetime.now()
+			user.save()
 
-            return Response(r.json()) # retorna el token
-        else:
-            return Response({'message':'Usuario inactivo'}, status=status.HTTP_400_BAD_REQUEST)
-    except User.DoesNotExist:
-        return Response({'status':'Error', 'message':'Error al iniciar sesión'}, status=status.HTTP_400_BAD_REQUEST)
+			return Response(r.json()) # retorna el token
+		else:
+			return Response({'message':'Usuario inactivo'}, status=status.HTTP_400_BAD_REQUEST)
+	except User.DoesNotExist:
+		return Response({'status':'Error', 'message':'Error al iniciar sesión'}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
