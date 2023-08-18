@@ -12,7 +12,7 @@ from rest_framework.views import APIView
 from .models import User
 from .serializers import UserSerializer, UserAccountStudentRegisterSerializer, UserAccountTeacherRegisterSerializer
 
-AUTH_URL = config('AUTH_URL')
+AUTH_URL = 'https://school-control-backend.up.railway.app'
 
 class UserAccountStudentRegisterView(generics.CreateAPIView):
 	serializer_class = UserAccountStudentRegisterSerializer
