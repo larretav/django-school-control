@@ -52,19 +52,23 @@ class UserAccountTeacherRegisterView(generics.CreateAPIView):
 def token(request):
 	print('POST LOGIN we :v')
 	try:
+		print('1 WE')
 		user = User.objects.get(username = request.data['username'], is_active = True)
+		print('2 WE')
 		if user:
+			print('3 WE')
+			print(AUTH_URL)
 			r = requests.post(
 			f'{AUTH_URL}/o/token/',
 				data={
 					'grant_type': 'password',
 					'username': request.data['username'],
 					'password': request.data['password'],
-					'client_id': config('CLIENT_ID'),
-					'client_secret': config('CLIENT_SECRET'),
+					'client_id': 'nVQLlLf0aGSAkyRKlMAv6A14VB6uVZifrfNuWgqv',
+					'client_secret': 'hyzlLgMCDgtyTZ6eSoFHX5vPAsjHKdansXwl98ENyWkUMGevB64HTCapqtcmPHzgACTyKAjS0cdLsunxWLxvlS3VbPOg1xOKQl8AdEKYHnL954s8TNiAFl879XXdaj3H',
 				},
 			)
-
+			print('4 WE')
 			user.last_login = datetime.now()
 			user.save()
 
