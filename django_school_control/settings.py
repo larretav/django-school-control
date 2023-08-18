@@ -33,8 +33,7 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# CSRF_TRUSTED_ORIGINS = ['https://school-control-backend.up.railway.app']
-CSRF_TRUSTED_ORIGINS = [socket.gethostbyname(host_name.local)]
+CSRF_TRUSTED_ORIGINS = ['https://school-control-backend.up.railway.app']
 # Application definition
 
 INSTALLED_APPS = [
