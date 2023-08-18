@@ -37,7 +37,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-CSRF_TRUSTED_ORIGINS = ['https://school-control-backend.up.railway.app']
+CSRF_TRUSTED_ORIGINS = [
+    'https://school-control-back-dock-img.up.railway.app',
+    'https://school-control-backend.up.railway.app',
+]
+
 # Application definition
 
 INSTALLED_APPS = [
