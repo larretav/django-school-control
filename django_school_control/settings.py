@@ -31,10 +31,6 @@ ALLOWED_HOSTS = ['*']
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 CSRF_TRUSTED_ORIGINS = ['https://school-control-backend.up.railway.app']
