@@ -50,7 +50,7 @@ class UserAccountTeacherRegisterView(generics.CreateAPIView):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def token(request):
-
+		print('POST LOGIN we :v')
     try:
         user = User.objects.get(username = request.data['username'], is_active = True)
         if user:

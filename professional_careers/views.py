@@ -9,6 +9,7 @@ class ProfessionalCareerViewset(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
 
     def get_queryset(self):
+        print('Professional Career')
         return ProfessionalCareer.objects.filter(status=True)
     
     def perform_destroy(self, instance):
