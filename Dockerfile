@@ -26,3 +26,5 @@ RUN pip install -r requirements.txt
 RUN apk del build-deps
 
 RUN mkdir ../school-control-logs
+
+CMD ["sh", "entrypoint.sh"]
